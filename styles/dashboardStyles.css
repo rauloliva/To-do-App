@@ -1,0 +1,33 @@
+.title{
+    margin-left: 30%
+}
+
+img.search_icon{
+    float:left;
+    margin-left: 33%
+}
+
+#search_box{
+    float:left;
+    width:25%;
+    margin-left: 39%
+}
+
+.container-lists{
+    width: 100%;
+    height: auto;
+    padding-left: 5%
+}
+
+.add-list{
+    width: 15%;
+    height: 140px;
+    background: rgb(194, 188, 188);
+    border-radius: 5%
+}
+
+@media only screen and (max-width:760px){
+    .title{
+        margin-left: 10%;
+    }
+}

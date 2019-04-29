@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/logInStyle.css">
-    <title>To Do</title>
+    <link rel="stylesheet" href="styles/dashboardStyles.css">
+    <title>Dashboard</title>
 </head>
 <body>
     <nav class="toolbar">
         <img class="icon" src="Images/notes_icon.png" width="70px" height="70px">
-        <h1 class="title">Log In</h1>
-         <ul class="nav">
-             <li class="nav-item active">
-                 <a href="sign_in.html" class="nav-link">Sign In</a>
-             </li>
-             <li class="nav-item active">
-                <a href="contact.html" class="nav-link">Contact</a>
-            </li>
-         </ul>
-         <!--only shows for mobile devices-->
-         <nav id="nav-mobile" class="navbar navbar-dark bg-dark " style="width:90px">
+        <h1 class="title">Dashboard</h1>
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="profile.html" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="index.html" class="nav-link">Log out</a>
+                </li>
+            </ul>
+            <!--only shows for mobile devices-->
+            <nav id="nav-mobile" class="navbar navbar-dark bg-dark " style="width:90px">
             <button class="navbar-toggler" style="background:black" data-toggle="collapse" 
                 data-target="#navbarExternalContent" aria-controls="navbarExternalContent" 
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -34,24 +34,24 @@
         <div class="bg-dark p-4">
         <ul class="nv">
                 <li class="nav-item active">
-                    <a href="sign_in.html" class="nav-link">Sign In</a>
+                    <a href="profile.html" class="nav-link">Profile</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="index.html" class="nav-link">Log out</a>
                 </li>
             </ul>
         </div>
+    </div><br>
+    <img src="Images/search_icon.png" width="30px" height="35px" /><input type="text" id="search_box">
+    <br><br>
+    <!--the lists are located here-->
+    <div class="container-lists">
+        <h6 style="margin-left:2%">Create new list</h6>
+        <div class="add-list">
+            <img src="">
+        </div>
     </div>
     
-    <h1 class="name-website">TO DO</h1><br>
-    <div class="form"><br>
-        <label id="lbl_username">Username or Email</label>
-        <p><input type="text" id="username"></p><br>
-        <label id="lbl_password">Password</label>
-        <p><input type="password" id="password"></p><br>
-        <button id="login" onclick="window.location = 'dashboard.html'">Log In</button>
-    </div>
-
     <script src="js/jquery.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
