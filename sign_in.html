@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/signInStyles.css">
+    <title>Sign In</title>
+</head>
+<body>
+    <nav class="toolbar">
+        <img class="icon" src="Images/notes_icon.png" width="70px" height="70px">
+        <h1 class="title">Sign In</h1>
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a href="log_in.html" class="nav-link">Log In</a>
+                </li>
+            </ul>
+            <!--only shows for mobile devices-->
+            <nav id="nav-mobile" class="navbar navbar-dark bg-dark " style="width:90px">
+            <button class="navbar-toggler" style="background:black" data-toggle="collapse" 
+                data-target="#navbarExternalContent" aria-controls="navbarExternalContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" ></span>
+            </button>
+        </nav>
+    </nav>
+    <!--the menu items for mobile devices-->
+    <div class="collapse" id="navbarExternalContent">
+        <div class="bg-dark p-4">
+        <ul class="nv">
+                <li class="nav-item active">
+                    <a href="log_in.html" class="nav-link">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </div><br>
+    <div class="form"><br>
+        <h5 align="center">You almost have your account, just fill up the following form</h5>
+        <label id="lbl_username">Username</label>
+        <p><input type="text" id="username"></p><br>
+        <label id="lbl_password">Password</label>
+        <p><input type="password" id="password"></p><br>
+        <label id="lbl_email">Email</label>
+        <p><input type="email" id="email"></p><br>
+        <label id="lbl_birthday">Birthday</label>
+        <p><input type="date" id="birthday"></p><br>
+        <button id="signin">Sign In</button>
+    </div>
+
+    <script src="js/jquery.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
