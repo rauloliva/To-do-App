@@ -75,6 +75,10 @@ input:focus{
     border: 1px solid rgb(0, 174, 255)
 }
 
+select{
+    font-size: 20px
+}
+
 @media only screen and (max-width:960px){
     #nav-mobile{
         visibility: visible;
