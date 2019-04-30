@@ -1,0 +1,78 @@
+.title{
+    margin-left: 34%
+}
+
+.nav{
+    float: left;
+    margin-left: 15%;
+}
+
+.profile{
+    width: 65%;
+    height: 580px;
+    background: rgb(209, 205, 205);
+    margin-left: 17%;
+    margin-right: 17%;
+    border-radius: 4%
+}
+
+.photo{
+    width: 200px;
+    height: 200px;
+    background: white;
+    border: 5px solid black;
+    border-radius: 6%;
+    margin-left:5%;
+    float:left;
+}
+
+.form{
+    float:left;
+    margin-left: 15%;
+}
+
+label#lbl_username{
+    margin-left: 42%
+}
+
+label#lbl_password{
+    margin-left: 42%
+}
+
+label#lbl_email{
+    margin-left: 45%
+}
+
+label#lbl_birthday{
+    margin-left: 44%
+}
+
+input{
+    width: 123%;
+    height: 35px;
+}
+
+@media only screen and (max-width:960px){
+    #nav-mobile{
+        visibility: visible;
+        margin-left:80%
+    }
+    .nav{
+        visibility: hidden
+    }
+    .title{
+        margin-left: 20%
+    }
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.photo-upload {
+    border: 3px solid white;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: rgb(236, 131, 32);
+    border-radius: 5%
+}

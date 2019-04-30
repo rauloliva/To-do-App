@@ -15,15 +15,22 @@ img.search_icon{
 
 .container-lists{
     width: 100%;
-    height: auto;
-    padding-left: 5%
+    height: 450px;
+    padding-left: 5%;
+    overflow-y: auto;
 }
 
 .add-list{
     width: 15%;
     height: 140px;
     background: rgb(194, 188, 188);
-    border-radius: 5%
+    border-radius: 5%;
+    cursor: pointer
+}
+
+.search_box{
+    width: 25%;
+    margin-left: 35%
 }
 
 @media only screen and (max-width:760px){
