@@ -37,33 +37,49 @@
             </ul>
         </div>
     </div>
-
+    
     <nav class="toolbar-text">
         <button id="btn-save">Save list</button>
         <strong style="font-size:21px;margin-left: 7%;margin-right: 2%">Styles</strong>
-        <button id="btn-default">Default</button>
-        <button id="btn-bold"><img src="Images/bold_icon.png" width="30px" height="30px"></button>
-        <button id="btn-italic"><img src="Images/italic_icon.png" width="30px" height="30px"></button>
+        <input type="checkbox" id="bold_style" value="bold"><b>Bold</b>
+        <input type="checkbox" id="italic_style" value="italic"><b>Italic</b>
         <select id="cmb_font" style="margin-left:3%">
-            <option>Times New Roman</option>
-            <option>Calibri</option>
+            <option value="Lucida Sans">Lucida Sans</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Calibri">Calibri</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+            <option value="Gill Sans">Gill Sans</option>
+            <option value="Segoe UI">Segoe UI</option>
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
         </select>
-        <input type="number" id="" value="12" style="width:5%;margin-left:3%">
-        <input type="color" id="" style="height:55%;margin-left:3%">
+        <select id="font_size" style="margin-left:3%">
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
+            <option value="20" selected>20</option>
+            <option value="22">22</option>
+            <option value="24">24</option>
+        </select>
+        <input type="color" id="color_selector" style="height:55%;margin-left:3%">
     </nav><br>
     
     <div class="list-body">
-        <input type="text" id="" style="width:75%">
-        <button style="width:20%">Add</button>
-        <table>
-
+        <input type="text" id="task" style="width:75%">
+        <button style="width:20%" id="btn-add">Add</button><br>
+        <table style="width:100%">
+            <!--tasks listed-->
         </table>
     </div><br>
     
     <script src="js/jquery.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-        document.querySelector('#btn-default').focus()
-    </script>
+    <script src="js/createList.js"></script>
 </body>
 </html>

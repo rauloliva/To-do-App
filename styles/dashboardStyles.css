@@ -25,7 +25,13 @@ img.search_icon{
     height: 140px;
     background: rgb(194, 188, 188);
     border-radius: 5%;
-    cursor: pointer
+    cursor: pointer;
+    transition: .7s
+}
+
+.add-list:hover{
+    background: #fff;
+    transition: .7s;
 }
 
 .search_box{
