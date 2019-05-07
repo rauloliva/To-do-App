@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/signInStyles.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <script src="js/jquery.min.js"></script>
     <title>Sign In</title>
 </head>
 <body>
@@ -39,7 +41,8 @@
     </div><br>
     <div class="form"><br>
         <h5 align="center">You almost have your account, just fill up the following form</h5>
-        <label id="lbl_username">Username</label>
+        <label id="lbl_username">
+            Username</label>
         <p><input type="text" id="username"></p><br>
         <label id="lbl_password">Password</label>
         <p><input type="password" id="password"></p><br>
@@ -47,10 +50,29 @@
         <p><input type="email" id="email"></p><br>
         <label id="lbl_birthday">Birthday</label>
         <p><input type="date" id="birthday"></p><br>
-        <button id="signin" onclick="window.location = 'index.html'">Sign In</button>
+        <button id="signin">Sign In</button>
     </div><br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="empty_fields">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="title-modal" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <h5 id="body-modal"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/jquery.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/signIn.js"></script>
 </body>
 </html>
