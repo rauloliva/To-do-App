@@ -9,7 +9,7 @@ class Modal_Content{
 
     setTexts(){
         document.querySelector('#title-modal').textContent = this.title
-        document.querySelector('#body-modal').textContent = this.body
+        document.querySelector('#body-modal').innerHTML = this.body
     }
 
     setActions(){
@@ -25,6 +25,6 @@ class Modal_Content{
 
     clearTexts(){
         document.querySelector('#title-modal').textContent = ""
-        document.querySelector('#body-modal').textContent = ""
+        document.querySelector('#body-modal').innerHTML = ""
     }
 }
