@@ -9,6 +9,7 @@ document.querySelector("#login").addEventListener('click',function(){
         var modal = new Modal_Content('Empty Fields','There are empty fields')
         modal.setTexts()
         $("#incorrect_passwords").modal('show')
+        redMarked()
     }else{
         window.location = 'dashboard.html'
     }
