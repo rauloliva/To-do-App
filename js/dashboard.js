@@ -21,12 +21,13 @@ document.querySelector('.search_box').addEventListener('keyup',function(key){
             match = exp.test(children[i].id)
             if(!match){
                 if(states[i] === "on"){
-                    states[i] = "off"
                     document.getElementById(children[i].id).remove()
+                    states[i] = "off"
                 }
             }else{
                 if(states[i] === "off"){
                     father.appendChild(children[i])
+                    states[i] = "on"
                 }
             }
         }
@@ -34,6 +35,7 @@ document.querySelector('.search_box').addEventListener('keyup',function(key){
         for (let i = 0; i < children.length; i++) {
             if(states[i] === "off"){
                 father.appendChild(children[i])
+                states[i] = "on"
             }
         }
     }
