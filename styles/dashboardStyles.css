@@ -26,7 +26,10 @@ img.search_icon{
     background: rgb(194, 188, 188);
     border-radius: 5%;
     cursor: pointer;
-    transition: .7s
+    transition: .7s;
+    float:left;
+    margin-right: 5%;
+    margin-top: 3%
 }
 
 .add-list:hover{
@@ -50,6 +53,7 @@ img.search_icon{
     .add-list{
         width: 30%;
         height: 80px;
+        margin-right: 3%
     }
     #add_icon{
         width: 100%;
