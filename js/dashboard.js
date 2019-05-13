@@ -1,3 +1,6 @@
+//Lists's chldren and their states
+//On: appers on the DOM 
+//Off: doesn't appear in the DOM
 const children = [], states = []
 const father = document.querySelector('#lists')
 
@@ -22,15 +25,15 @@ document.querySelector('.search_box').addEventListener('keyup',function(){
 
             var exp = new RegExp(pattern)
             match = exp.test(children[i].id)
-            if(!match){
-                if(states[i] === "on"){
-                    document.getElementById(children[i].id).remove()
-                    states[i] = "off"
-                }
-            }else{
+            if(match){
                 if(states[i] === "off"){
                     father.appendChild(children[i])
                     states[i] = "on"
+                }
+            }else{
+                if(states[i] === "on"){
+                    document.getElementById(children[i].id).remove()
+                    states[i] = "off"
                 }
             }
         }
