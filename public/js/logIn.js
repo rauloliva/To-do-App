@@ -11,7 +11,8 @@ document.querySelector("#login").addEventListener('click',function(){
         $("#incorrect_passwords").modal('show')
         redMarked()
     }else{
-        window.location = 'dashboard.html'
+        //window.location = 'dashboard'
+        verifyOnServer()
     }
 })
 
@@ -21,4 +22,18 @@ function redMarked(){
     
     inputUser.setAttribute('style',`border:1px solid ${username === "" ? "red" : "blue"}`)
     inputPwd.setAttribute('style',`border:1px solid ${password === "" ? "red" : "blue"}`)
+}
+
+function verifyOnServer() {
+    const username = document.getElementById('username').value
+    const pwd = document.getElementById('password').value
+    var http = new XMLHttpRequest()
+    http.onreadystatechange = function(){
+        if(this.readyState === 4 && this.status === 200){
+            const object = JSON.parse(this.response)
+            alert(object.name)
+        }
+    }
+    http.open('GET',`/log_in?username=${username}&pwd=${pwd}`,true)
+    http.send()
 }
