@@ -22,7 +22,7 @@ document.querySelector('.search_box').addEventListener('keyup',function(){
             for (const char of search_box) {
                 pattern += `[${char}]{1}`
             }
-
+            
             var exp = new RegExp(pattern)
             match = exp.test(children[i].id)
             if(match){
