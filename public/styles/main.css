@@ -1,0 +1,96 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body{
+    background: rgb(112, 153, 241)
+}
+
+.toolbar{
+    width: 100%;
+    height: 85px;
+    background: rgb(233, 218, 88);
+    color: black;
+    padding-bottom: .5%;
+    padding-top: .5%;
+}
+
+.icon{
+    float:left;
+    margin-left: 3%
+}
+
+.title{
+    float: left;
+    margin-left: 35%
+}
+
+.nav{
+    float: left;
+    margin-left: 20%;
+}
+
+ul{
+    display: table-row
+}
+
+li{
+    display: table-cell;
+    font-size: 20px;
+}
+
+#nav-mobile{
+    visibility: hidden
+}
+
+label{
+    font-size: 22px;
+}
+
+button{
+    transition: .9s;
+    cursor: pointer;
+    border: 3px solid white;
+    background: rgb(18, 177, 189);
+    font-size: 21px
+}
+
+button:hover{
+    transition: .5s;
+    background: rgb(207, 204, 23);
+}
+
+button:focus{
+    transition: .7s;
+    background: rgb(245, 85, 85);
+}
+
+input{
+    border: 1px solid blue;
+    font-size: 20px;
+    text-align: center
+}
+
+input:focus{
+    border: 1px solid rgb(0, 174, 255)
+}
+
+select{
+    font-size: 20px
+}
+
+@media only screen and (max-width:960px){
+    #nav-mobile{
+        visibility: visible;
+        margin-left:80%
+    }
+    .nav{
+        visibility: hidden
+    }
+    .title{
+        margin-left: 20%
+    }
+}
+
+
+

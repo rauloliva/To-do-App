@@ -1,0 +1,123 @@
+.title{
+    margin-left: 34%
+}
+
+.nav{
+    float: left;
+    margin-left: 15%;
+}
+
+.profile{
+    width: 65%;
+    height: 580px;
+    background: rgb(209, 205, 205);
+    margin-left: 17%;
+    margin-right: 17%;
+    border-radius: 4%;
+    padding-left: 5%
+}
+
+.photo{
+    width: 200px;
+    height: 200px;
+    background: white;
+    border: 5px solid black;
+    border-radius: 6%;
+    margin-left:5%;
+    float:left;
+}
+
+.form{
+    float:left;
+    margin-left: 15%;
+}
+
+label#lbl_username{
+    margin-left: 42%
+}
+
+label#lbl_password{
+    margin-left: 42%
+}
+
+label#lbl_email{
+    margin-left: 45%
+}
+
+label#lbl_birthday{
+    margin-left: 44%
+}
+
+input{
+    width: 123%;
+    height: 35px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.photo-upload {
+    border: 3px solid white;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: rgb(236, 131, 32);
+    border-radius: 5%;
+    transition: .7s
+}
+
+.photo-upload:hover{
+    background: rgb(202, 206, 23);
+    transition: .7s
+}
+
+@media only screen and (max-width:960px){
+    #nav-mobile{
+        visibility: visible;
+        margin-left:80%
+    }
+    .nav{
+        visibility: hidden
+    }
+    .title{
+        margin-left: 20%
+    }
+
+    .photo{
+        width: 200px;
+        margin-left:25%;
+    }
+    label#lbl_username{
+        margin-top: 45%;
+        margin-left: 30%
+    }
+    label#lbl_password{
+        margin-left: 32%
+    }
+    
+    label#lbl_email{
+        margin-left: 40%
+    }
+    
+    label#lbl_birthday{
+        margin-left: 35%
+    }
+    input{
+        margin-left: 0%;
+        margin-right:30%;
+        width: 100%;
+    }
+    .profile{
+        width: 83%;
+        height: 850px;
+        margin-left: 8%;
+        margin-right: 0%;
+        margin-bottom: 2%;
+        padding: 0%
+    }
+    #save{
+        width: 60%;
+        margin-left: 20%
+    }
+    
+}
