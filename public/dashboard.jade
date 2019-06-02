@@ -44,20 +44,20 @@ html(lang="en")
         
         div(class="container-lists")
             <!--< style="margin-left:2%">Create new list</>-->
-            div(id="add" class="add-list" onclick="window.location = 'create_list.html'")
+            div(id="add" class="add-list" onclick="window.location = 'create_list?list=New List'")
                 img(id="add_icon" src="Images/add_icon.png" width="190px" height="135px")
                 <!--the lists are located here-->
             div(id="lists")
                 <!--Examples of lists-->
-                div(id="my-list" class="add-list" onclick="window.location = 'create_list'")
+                div(id="my-list" class="add-list" onclick="window.location = 'create_list?list=my-list'")
                     |My List
-                div(id="my-task" class="add-list" onclick="window.location = 'create_list'")
+                div(id="my-task" class="add-list" onclick="window.location = 'create_list?list=my-task'")
                     |my-task
-                div(id="mono" class="add-list" onclick="window.location = 'create_list'")
+                div(id="mono" class="add-list" onclick="window.location = 'create_list?list=mono'")
                     |mono
-                div(id="4" class="add-list" onclick="window.location = 'create_list'")
+                div(id="4" class="add-list" onclick="window.location = 'create_list?list=4'")
                     |list 4
-                div(id="44" class="add-list" onclick="window.location = 'create_list'")
+                div(id="44" class="add-list" onclick="window.location = 'create_list?list=44'")
                     |list 44
 
     script(src="js/jquery.slim.min.js")

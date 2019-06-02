@@ -35,7 +35,7 @@ var DataBase = function(){
             callback(objData)
         })
     }
-
+    
     return {
         Insert: Insert,
         Select: Select

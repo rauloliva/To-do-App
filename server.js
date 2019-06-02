@@ -1,13 +1,12 @@
 //Creating the server
 var express = require('express')
 var app = express()
+var port = 3000
 var bodyParser = require('body-parser')
 var session = require('express-session')
 //Database
 var DatabBase = require('./public/js/db')
 var db = new DatabBase()
-var port = 3000
-
 app.listen(port,function(){
     console.log(`Server started at port ${port}`);
 })
@@ -24,12 +23,12 @@ app.use(express.static('public'))
 //Setting a midleware session
 app.use(session({secret:"Idk"}))
 
+const msg_404 = "Sorry but we could not find any page that\n matches your criteria"
+const msg_not_LoggedIn = "Sorry but you need to be logged-in, in order to use the site"
+
 //Log In page
 app.get('/',function(req,res){
-    req.session.destroy(function(err){
-        if(err) throw err
-        res.render('log_in')
-    })
+    res.render('log_in')
 })
 
 app.post('/log_in',function(req,res){
@@ -53,17 +52,40 @@ app.get('/dashboard',function(req,res){
     if(req.session.Id){
         res.render('dashboard')
     }else{
-        res.write('<h1>You are not logged in</h1>')
-        res.end("Go back, and fill the the required fields to get logged in")
+        res.render('error',{
+            title: "You are not logged in",
+            message: msg_not_LoggedIn
+        })
     }
 })
 
 //create list page
 app.get('/create_list',function(req,res){
     if(req.session.Id){
-        res.render('create_list')
+        const name_list = req.query.list
+        res.render('create_list',{name_list: name_list})
     }else{
-        res.write('<h1>You are not logged in</h1>')
-        res.end("Go back, and fill the the required fields to get logged in")
+        res.render('error',{
+            title: "You are not logged in",
+            message: msg_not_LoggedIn
+        })
     }
+})
+
+//Log out
+app.get('/log_out',function(req,res){
+    if(req.session.Id){
+        req.session.destroy(function(err){
+            if(err) throw err
+        })
+        res.render('log_in')
+    }
+})
+
+//Not found page
+app.use(function(req,res,next){
+    res.render('error',{
+        title: "Page Not Found: Error 404",
+        message: msg_404
+    })
 })
