@@ -1,26 +1,5 @@
 var mysql = require('mysql')
 
-/*class DataBase{
-    constructor(){
-        this.cnn = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "raulito10",
-            database: "to_do",
-            port: "3306"  
-        })
-        this.cnn.connect(function(err){
-            if(err) new Error(err)
-            console.log("Connected")
-            var sql = "INSERT INTO users (1,'raul','rara','q@g.com','1997-09-27','Photo')"
-            this.query(sql,function(err,result){
-                if(err) new Error(err)
-                console.log(result);
-            })
-        })
-    }
-}*/
-
 var DataBase = function(){
     var sThis = this
     sThis.cnn = mysql.createConnection({
@@ -30,12 +9,11 @@ var DataBase = function(){
         database: "to_do",
         port: "3306"  
     })
-    
 
-    var Insert = function(){
+    var Insert = function(data){
         sThis.cnn.connect(function(err){
             if(err) throw err
-            console.log("Connected")
+            console.log("Connected to insert")
             var sql = "INSERT INTO users VALUES (1,'raul','rara','q@g.com','1997-09-27','Photo')"
             sThis.cnn.query(sql,function(err,result){
                 if(err) throw err
@@ -45,8 +23,22 @@ var DataBase = function(){
         })
     }
 
+    var Select = function(user, callback){
+        console.log("Retrieving...")
+        const sql = `SELECT * FROM users WHERE username = '${user.username}' AND password = '${user.pwd}'`
+        sThis.cnn.query(sql,function(err,result){
+            if(err) throw err
+            var objData = null
+            try {
+                objData = result[0]
+            } catch (error) {}
+            callback(objData)
+        })
+    }
+
     return {
-        Insert: Insert
+        Insert: Insert,
+        Select: Select
     }
 }
 module.exports = DataBase

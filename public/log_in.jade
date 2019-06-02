@@ -36,20 +36,25 @@ html(lang="en")
                         a(href="sign_in" class="nav-link")|Sign In
                     li(class="nav-item active")
                         a(href="contact" class="nav-link")|Contact
+        <!--Error Message-->
+        if message
+            div(class="error-msg")
+                h1 #{message}
 
         h1(class="name-website")|TO DO 
         br
         div(class="form")
             br
-            label(id="lbl_username")|Username or Email
-            p 
-                input(type="text" id="username")
-            br
-            label(id="lbl_password")|Password
-            p
-                input(type="password" id="password")
-            br
-            button(id="login")|Log In
+            form(action="/log_in", method="post")
+                label(id="lbl_username")|Username or Email
+                p 
+                    input(type="text" id="username" name="username")
+                br
+                label(id="lbl_password")|Password
+                p
+                    input(type="password" id="password" name="password")
+                br
+                button(id="login")|Log In
 
         <!-- Modal -->
         div(class="modal fade" id="incorrect_passwords")

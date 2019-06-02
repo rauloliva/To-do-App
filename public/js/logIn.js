@@ -10,9 +10,6 @@ document.querySelector("#login").addEventListener('click',function(){
         modal.setTexts()
         $("#incorrect_passwords").modal('show')
         redMarked()
-    }else{
-        //window.location = 'dashboard'
-        verifyOnServer()
     }
 })
 
@@ -24,16 +21,20 @@ function redMarked(){
     inputPwd.setAttribute('style',`border:1px solid ${password === "" ? "red" : "blue"}`)
 }
 
-function verifyOnServer() {
+/*function verifyOnServer() {
     const username = document.getElementById('username').value
     const pwd = document.getElementById('password').value
     var http = new XMLHttpRequest()
     http.onreadystatechange = function(){
         if(this.readyState === 4 && this.status === 200){
-            const object = JSON.parse(this.response)
-            alert(object.name)
+            try {
+                const json = JSON.parse(this.response)
+                if(!json.flag){
+                    alert('Incorrect Authentication')
+                }
+            } catch (error) {}
         }
     }
     http.open('GET',`/log_in?username=${username}&pwd=${pwd}`,true)
     http.send()
-}
+}*/
