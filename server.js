@@ -57,7 +57,7 @@ app.get('/dashboard',function(req,res){
         res.render('dashboard')
     }else{
         res.write('<h1>You are not logged in</h1>')
-        res.end("yeah")
+        res.end("Go back, and fill the the required fields to get logged in")
     }
 })
 
