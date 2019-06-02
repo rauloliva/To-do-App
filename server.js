@@ -33,11 +33,9 @@ app.get('/',function(req,res){
 })
 
 app.post('/log_in',function(req,res){
-    const username = req.body.username
-    const pwd = req.body.password
     var user = {
-        username: username,
-        pwd: pwd
+        username: req.body.username,
+        pwd: req.body.password
     }
     db.Select(user,function(objData){
         if(objData !== null && objData !== undefined){
@@ -52,7 +50,6 @@ app.post('/log_in',function(req,res){
 
 //dashboard page
 app.get('/dashboard',function(req,res){
-    console.log(req.session.Id)
     if(req.session.Id){
         res.render('dashboard')
     }else{
@@ -61,3 +58,12 @@ app.get('/dashboard',function(req,res){
     }
 })
 
+//create list page
+app.get('/create_list',function(req,res){
+    if(req.session.Id){
+        res.render('create_list')
+    }else{
+        res.write('<h1>You are not logged in</h1>')
+        res.end("Go back, and fill the the required fields to get logged in")
+    }
+})
