@@ -63,6 +63,12 @@ app.get('/dashboard',function(req,res){
 app.get('/create_list',function(req,res){
     if(req.session.Id){
         const name_list = req.query.list
+        if(name_list === undefined){
+            res.render('error',{
+                title: "The request was not written well",
+                message: "An error occured while attempting to load the page"
+            })
+        }
         res.render('create_list',{name_list: name_list})
     }else{
         res.render('error',{
