@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="shortcut icon", href="Images/notes_icon.png", type="image/png")
+        link(rel="stylesheet", href="styles/bootstrap.min.css")
+        link(rel="stylesheet", href="styles/main.css")
+        link(rel="stylesheet", href="styles/profileStyles.css")
+        title Profile: #{username}
+    body
+        nav(class="toolbar")
+            img(src="Images/notes_icon.png", class="icon" width="70px" height="70px")
+            h1(class="title")|Dashboard
+            ul(class="nav")
+                li(class="nav-item active")
+                    a(href="dashboard" class="nav-link")|Dashboard
+                li(class="nav-item active")
+                    a(href="create_list" class="nav-link")|Create new List
+            
+            <!--only shows for mobile devices-->
+            nav(id="nav-mobile" class="navbar navbar-dark bg-dark" style="width:90px")
+                button(class="navbar-toggler", style="background:black", data-toggle="collapse",
+                    data-target="#navbarExternalContent", aria-controls="navbarExternalContent",
+                    aria-expanded="false", aria-label="Toggle navigation")
+                    span(class="navbar-toggler-icon")
+
+        <!--the menu items for mobile devices-->
+        div(class="collapse" id="navbarExternalContent")
+            div(class="bg-dark p-4")
+                ul(class="nv")
+                    li(class="nav-item active")
+                        a(href="dashboard" class="nav-link")|Dashboard
+                    li(class="nav-item active")
+                        a(href="create_list" class="nav-link")|Create new List
+
+        br
+        div(class="profile")
+            br
+            div(class="photo")
+                img(src="Images/photo_default.png" id="photo" width="192px" height="192px")
+                br
+                br
+                label(class="photo-upload")
+                    input(type="file" id="select_photo")
+                    |Choose a Photo
+            div(class="form")
+                label(id="lbl_username")|Username
+                p
+                    input(type="text" id="username" value="#{username}")
+                br
+                label(id="lbl_password")|Password
+                p
+                    input(type="password" id="password" value="#{password}")
+                br
+                label(id="lbl_email")|Email
+                p
+                    input(type="email" id="email" value="#{email}")
+                br
+                label(id="lbl_birthday")|Birthday
+                p
+                    input(type="date" id="birthday" value="#{birthday}")
+                br
+                button(id="save")|Save
+
+        script(src="js/jquery.slim.min.js")
+        script(src="js/bootstrap.min.js")
+        script(src="js/profile.js")

@@ -81,15 +81,26 @@ app.get('/create_list',function(req,res){
     }
 })
 
+//Profile page
 app.get('/profile',function(req,res){
     if(req.session.Id){
-        db.select(req.session.Id,function(profile){
+        db.selectProfile(req.session.Id,function(profile){
+            var date = new Date(profile.birthday)
+            let month = date.getMonth() + 1
+            month = month <= 9 ? `0${month}` : month
+            profile.birthday = `${date.getFullYear()}-${month}-${date.getDate()}`
             res.render('profile',profile)
         })
     }else{
         res.render('error',error_session)
     }
 })
+
+function getMonth(month){
+    switch(month){
+        case 0: month = ''
+    }
+}
 
 //Log out
 app.get('/log_out',function(req,res){
