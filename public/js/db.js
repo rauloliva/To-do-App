@@ -49,10 +49,22 @@ var DataBase = function(){
         })
     }
 
+    var update = function(data, callback){
+        console.log('Updating profile...')
+        const sql = `UPDATE users SET username = '${data.username}', password = '${data.password}', 
+            email = '${data.email}', birthday = '${data.birthday}', photo = '${data.photo}' 
+            WHERE id_user = ${data.id}`
+        sThis.cnn.query(sql,function(err){
+            if(err) throw err
+            callback()
+        })
+    }
+
     return {
         Insert: Insert,
         Select: Select,
-        selectProfile: selectProfile
+        selectProfile: selectProfile,
+        update: update
     }
 }
 module.exports = DataBase

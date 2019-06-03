@@ -8,6 +8,8 @@ html(lang="en")
         link(rel="stylesheet", href="styles/bootstrap.min.css")
         link(rel="stylesheet", href="styles/main.css")
         link(rel="stylesheet", href="styles/profileStyles.css")
+        link(rel="stylesheet", href="styles/modal.css")
+        script(src="js/jquery.min.js")
         title Profile: #{username}
     body
         nav(class="toolbar")
@@ -38,31 +40,47 @@ html(lang="en")
         br
         div(class="profile")
             br
-            div(class="photo")
-                img(src="Images/photo_default.png" id="photo" width="192px" height="192px")
-                br
-                br
-                label(class="photo-upload")
-                    input(type="file" id="select_photo")
-                    |Choose a Photo
-            div(class="form")
-                label(id="lbl_username")|Username
-                p
-                    input(type="text" id="username" value="#{username}")
-                br
-                label(id="lbl_password")|Password
-                p
-                    input(type="password" id="password" value="#{password}")
-                br
-                label(id="lbl_email")|Email
-                p
-                    input(type="email" id="email" value="#{email}")
-                br
-                label(id="lbl_birthday")|Birthday
-                p
-                    input(type="date" id="birthday" value="#{birthday}")
-                br
-                button(id="save")|Save
+            form(action="profile", method="post" enctype="multipart/form-data")
+                div(class="photo")
+                    img(src="#{photo !== null ? 'photos/'+photo : 'Images/photo_default.png'}" id="photo" width="192px" height="192px")
+                    if error
+                        h4 #{error}
+                    br
+                    br
+                    label(class="photo-upload")
+                        input(type="file" id="select_photo" name="photo")
+                        |Choose a Photo
+                div(class="form")
+                    
+                        label(id="lbl_username")|Username
+                        p
+                            input(type="text" id="username" name="username" value="#{username}")
+                        br
+                        label(id="lbl_password")|Password
+                        p
+                            input(type="password" id="password" name="password" value="#{password}")
+                        br
+                        label(id="lbl_email")|Email
+                        p
+                            input(type="email" id="email" name="email" value="#{email}")
+                        br
+                        label(id="lbl_birthday")|Birthday
+                        p
+                            input(type="date" id="birthday" name="birthday" value="#{birthday}")
+                        br
+                        <!--input(type="hidden", id="photoName")-->
+                        button(id="save")|Save
+
+        <!-- Modal -->
+        div(class="modal fade" id="incorrect_file_format")
+            div(class="modal-dialog")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        h4(id="title-modal" class="modal-title")
+                    div(class="modal-body")
+                        h5(id="body-modal")
+                    div(class="modal-footer")
+                        button(type="button" data-dismiss="modal")|Cerrar
 
         script(src="js/jquery.slim.min.js")
         script(src="js/bootstrap.min.js")

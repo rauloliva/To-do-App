@@ -4,6 +4,33 @@ var app = express()
 var port = 3000
 var bodyParser = require('body-parser')
 var session = require('express-session')
+var path = require('path')
+//multer fucntions
+var multer = require('multer')
+const storage = multer.diskStorage({
+    destination: './public/photos/',
+    filename: function(req,file,cb){    
+        cb(null,file.fieldname + "-" + Date.now() + path.extname(file.originalname))
+    }
+
+})
+const upload = multer({
+    storage: storage,
+    limits: {fileSize: 1000000},
+    fileFilter: function(req,file,cb){
+        //check file extension
+        const fileTypes = /jpeg|jpg|png|gif/
+        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase())
+        //chech MIME 
+        const mimetype = fileTypes.test(file.mimetype)
+        if(mimetype && extname){
+            return cb(null,true)
+        }else{
+            cb('Error: Images only',false)
+        }
+    }
+}).single('photo')
+
 //Database
 var DatabBase = require('./public/js/db')
 var db = new DatabBase()
@@ -96,11 +123,24 @@ app.get('/profile',function(req,res){
     }
 })
 
-function getMonth(month){
-    switch(month){
-        case 0: month = ''
-    }
-}
+//when uploading profile's data
+app.post('/profile',function(req,res){
+    upload(req,res,(err) => {
+        if(err) throw err
+
+        const data = {
+            id: req.session.Id,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            birthday: req.body.birthday,
+            photo: req.file != undefined ? req.file.filename : req.session.photo
+        }
+        db.update(data,function(){
+            res.render('profile',data)
+        })
+    })
+})
 
 //Log out
 app.get('/log_out',function(req,res){
