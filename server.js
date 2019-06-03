@@ -81,6 +81,16 @@ app.get('/create_list',function(req,res){
     }
 })
 
+app.get('/profile',function(req,res){
+    if(req.session.Id){
+        db.select(req.session.Id,function(profile){
+            res.render('profile',profile)
+        })
+    }else{
+        res.render('error',error_session)
+    }
+})
+
 //Log out
 app.get('/log_out',function(req,res){
     if(req.session.Id){

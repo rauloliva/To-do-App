@@ -35,10 +35,24 @@ var DataBase = function(){
             callback(objData)
         })
     }
-    
+
+    var selectProfile = function(id, callback){
+        console.log('Retrieving profile...')
+        const sql = `SELECT * FROM users WHERE id_user = '${id}`
+        sThis.cnn.query(sql,function(err,result){
+            if(err) throw err
+            var profile = null
+            try {
+                profile = result[0]
+            } catch (error) {}
+            callback(profile)
+        })
+    }
+
     return {
         Insert: Insert,
-        Select: Select
+        Select: Select,
+        selectProfile: selectProfile
     }
 }
 module.exports = DataBase
