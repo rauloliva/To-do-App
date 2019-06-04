@@ -5,6 +5,7 @@ var port = 3000
 var bodyParser = require('body-parser')
 var session = require('express-session')
 var path = require('path')
+var api = require('./ControllerAPI/API')
 //multer fucntions
 var multer = require('multer')
 const storage = multer.diskStorage({
@@ -63,6 +64,8 @@ const lack_data = {
     title: "The request was not written well",
     message: "An error occured while attempting to load the page"
 }
+
+app.use('/person',api)
 
 //Log In page
 app.get('/',function(req,res){
