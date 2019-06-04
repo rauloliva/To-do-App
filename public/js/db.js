@@ -48,6 +48,19 @@ var DataBase = function(){
         })
     }
 
+    var SelectTasks = function(id_user, callback){
+        console.log("Retrieving tasks");
+        const sql = `SELECT DISTINCT(name_list) FROM lists WHERE id_user = ${id_user}`
+        sThis.cnn.query(sql,function(err,result){
+            if(err) throw err
+            var objData = null
+            try {
+                objData = result
+            } catch (error) {}
+            callback(objData)
+        })
+    }
+
     var selectProfile = function(id, callback){
         console.log('Retrieving profile...')
         const sql = `SELECT * FROM users WHERE id_user = ${id}`
@@ -76,6 +89,7 @@ var DataBase = function(){
         Insert: Insert,
         InsertTasks: InsertTasks,
         Select: Select,
+        SelectTasks: SelectTasks,
         selectProfile: selectProfile,
         update: update
     }

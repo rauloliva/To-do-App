@@ -91,7 +91,13 @@ app.post('/log_in',function(req,res){
 //dashboard page
 app.get('/dashboard',function(req,res){
     if(req.session.Id){
-        res.render('dashboard')
+        db.SelectTasks(req.session.Id,(objData) =>{
+            if(objData !== null && objData !== undefined){
+                res.render('dashboard',{tasks:objData})
+            }else{
+                res.render('dashboard')
+            }
+        })
     }else{
         res.render('error',error_session)
     }
