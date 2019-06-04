@@ -80,7 +80,10 @@ app.post('/log_in',function(req,res){
             req.session.photo = objData.photo
             res.redirect(301,'/dashboard') 
         }else{
-            res.render('log_in',{message: "Username or Password Incorrect"})
+            res.render('log_in',{
+                message: "Username or Password Incorrect",
+                msgStyle: "error-msg" 
+            })
         }
     })
 })
@@ -106,6 +109,18 @@ app.get('/create_list',function(req,res){
     }else{
         res.render('error',error_session)
     }
+})
+
+//getting the tasks
+app.post('/create_list',function(req,res){
+    const tasks = req.body.task
+    const listName = req.body.listName
+    db.InsertTasks(req.session.Id,tasks,listName,function(){
+        res.render('create_list',{
+            tasks:tasks,
+            name_list: listName
+        })
+    })
 })
 
 //Profile page
@@ -134,10 +149,32 @@ app.post('/profile',function(req,res){
             password: req.body.password,
             email: req.body.email,
             birthday: req.body.birthday,
-            photo: req.file != undefined ? req.file.filename : req.session.photo
+            photo: req.file != undefined ? req.file.filename : req.session.photo,
+            message: "The changes were saved successfully",
+            msgStyle: "success-msg"
         }
         db.update(data,function(){
             res.render('profile',data)
+        })
+    })
+})
+
+//Sign in
+app.get('/sign_in',function(req,res){
+    res.render('sign_in')
+})
+
+app.post('/sign_in',function(req,res){
+    const data = {
+        username: req.body.username,
+        pwd: req.body.password,
+        email: req.body.email,
+        birthday: req.body.birthday
+    }
+    db.Insert(data,function(){
+        res.render('log_in',{
+            message: "Your profile was created successfully",
+            msgStyle: "success-msg"
         })
     })
 })

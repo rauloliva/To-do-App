@@ -14,12 +14,12 @@ html(lang="en")
     body
         nav(class="toolbar")
             img(src="Images/notes_icon.png", class="icon" width="70px" height="70px")
-            h1(class="title")|Dashboard
+            h1(class="title")|Your Profile
             ul(class="nav")
                 li(class="nav-item active")
                     a(href="dashboard" class="nav-link")|Dashboard
                 li(class="nav-item active")
-                    a(href="create_list" class="nav-link")|Create new List
+                    a(href="create_list?list=New list" class="nav-link")|Create new List
             
             <!--only shows for mobile devices-->
             nav(id="nav-mobile" class="navbar navbar-dark bg-dark" style="width:90px")
@@ -35,8 +35,11 @@ html(lang="en")
                     li(class="nav-item active")
                         a(href="dashboard" class="nav-link")|Dashboard
                     li(class="nav-item active")
-                        a(href="create_list" class="nav-link")|Create new List
-
+                        a(href="create_list?list=New list" class="nav-link")|Create new List
+        <!--Error Message-->
+        if message
+            div(class="#{msgStyle}")
+                h1 #{message}
         br
         div(class="profile")
             br

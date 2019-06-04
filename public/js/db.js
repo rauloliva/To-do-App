@@ -10,17 +10,29 @@ var DataBase = function(){
         port: "3306"  
     })
 
-    var Insert = function(data){
-        sThis.cnn.connect(function(err){
+    var Insert = function(data,callback){
+        console.log("Inserting...")
+        var sql = `INSERT INTO users (username,password,email,birthday) VALUES 
+            ('${data.username}','${data.pwd}','${data.email}','${data.birthday}')`
+        sThis.cnn.query(sql,function(err){
             if(err) throw err
-            console.log("Connected to insert")
-            var sql = "INSERT INTO users VALUES (1,'raul','rara','q@g.com','1997-09-27','Photo')"
-            sThis.cnn.query(sql,function(err,result){
-                if(err) throw err
-                console.log("1 query inserted");
-                console.log(result);
-            })
+            callback()
         })
+    }
+
+    var InsertTasks = function(id, tasks, listName, callback){
+        console.log("Inserting tasks...")
+        var length = tasks.length
+        const date = new Date()
+        let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+        for (let i = 0; i < length; i++) {
+            var sql = `INSERT INTO lists (to_do,id_user,date_created,name_list) VALUES 
+                ('${tasks[i]}',${id},'${formatted_date}','${listName}')`    
+            sThis.cnn.query(sql,function(err){
+                if(err) throw err
+            })
+        }
+        callback()
     }
 
     var Select = function(user, callback){
@@ -62,6 +74,7 @@ var DataBase = function(){
 
     return {
         Insert: Insert,
+        InsertTasks: InsertTasks,
         Select: Select,
         selectProfile: selectProfile,
         update: update

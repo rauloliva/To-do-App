@@ -7,19 +7,17 @@ html(lang="en")
         link(rel="shortcut icon", href="Images/notes_icon.png", type="image/png")
         link(rel="stylesheet", href="styles/bootstrap.min.css")
         link(rel="stylesheet", href="styles/main.css")
-        link(rel="stylesheet", href="styles/logInStyle.css")
+        link(rel="stylesheet", href="styles/signInStyles.css")
         link(rel="stylesheet", href="styles/modal.css")
         script(src="js/jquery.min.js")
-        title To Do
+        title Sign In
     body
         nav(class="toolbar")
             img(src="Images/notes_icon.png", class="icon" width="70px" height="70px")
-            h1(class="title")|Log In
+            h1(class="title")|Sign In
             ul(class="nav")
                 li(class="nav-item active")
-                    a(href="sign_in" class="nav-link")|Sign In
-                li(class="nav-item active")
-                    a(href="contact" class="nav-link")|Contact
+                    a(href="log_in" class="nav-link")|Log In
             
             <!--only shows for mobile devices-->
             nav(id="nav-mobile" class="navbar navbar-dark bg-dark" style="width:90px")
@@ -33,28 +31,31 @@ html(lang="en")
             div(class="bg-dark p-4")
                 ul(class="nv")
                     li(class="nav-item active")
-                        a(href="sign_in" class="nav-link")|Sign In
-                    li(class="nav-item active")
-                        a(href="contact" class="nav-link")|Contact
-        <!--Message from the server-->
-        if message
-            div(class="#{msgStyle}")
-                h1 #{message}
-
-        h1(class="name-website")|TO DO 
+                        a(href="log_in" class="nav-link")|Log In
         br
+
         div(class="form")
-            br
-            form(action="/log_in", method="post")
-                label(id="lbl_username")|Username or Email
-                p 
+            form(action="/sign_in", method="post")
+                br
+                h5(align="center")|You almost have your account, just fill up the following form
+                label(id="lbl_username")|Username
+                p
                     input(type="text" id="username" name="username")
                 br
                 label(id="lbl_password")|Password
                 p
                     input(type="password" id="password" name="password")
                 br
-                button(id="login")|Log In
+                label(id="lbl_email")|Email
+                p
+                    input(type="email" id="email" name="email")
+                br
+                label(id="lbl_birthday")|Birthday
+                p
+                    input(type="date" id="birthday" name="birthday")
+                br
+                button(id="signin")|Sign In
+                br
 
         <!-- Modal -->
         div(class="modal fade" id="incorrect_passwords")
@@ -67,8 +68,8 @@ html(lang="en")
                     div(class="modal-footer")
                         button(type="button" data-dismiss="modal")|Cerrar
 
-    script(src="js/logIn.js")
-    script(src="js/jquery.slim.min.js")
-    script(src="js/bootstrap.min.js")
-    script(src="js/modal.js")
-    
+        
+        script(src="js/jquery.slim.min.js")
+        script(src="js/bootstrap.min.js")
+        script(src="js/modal.js")
+        script(src="js/signIn.js")

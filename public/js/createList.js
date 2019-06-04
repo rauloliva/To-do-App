@@ -8,6 +8,10 @@ var styles = {
 }
 var num_task = 0
 
+if(document.querySelector('.title').textContent === 'New List'){
+    $('#name_list').modal('show')
+}
+
 //event on input color
 document.querySelector('#color_selector').addEventListener('change',function(){
     color = this.value
@@ -58,6 +62,7 @@ document.querySelector('#btn-add').addEventListener('click',function(){
         var cell1 = document.createElement('td')
         var cell2 = document.createElement('td')
         cell2.setAttribute('id',`task_${num_task}`)
+        cell2.setAttribute('name',"task")
         var cell3 = document.createElement('td')
 
         //create the checkbox
@@ -82,6 +87,7 @@ document.querySelector('#btn-add').addEventListener('click',function(){
         //create the delete button
         var button = document.createElement('button')
         button.setAttribute('id',`btn_delete_${num_task}`)
+        button.setAttribute('type','button')
         button.addEventListener('click',function(){
             const id = this.id.replace('btn_delete_','')
             document.querySelector(`#row_${id}`).remove()
@@ -97,10 +103,24 @@ document.querySelector('#btn-add').addEventListener('click',function(){
         tr.appendChild(cell2)
         tr.appendChild(cell3)
 
+        //creating hidden inputs for the form
+        var hidden_input = document.createElement('input')
+        hidden_input.setAttribute('type','hidden')
+        hidden_input.setAttribute('value',text_input.value)
+        hidden_input.setAttribute('name','task')
+
         //adding the row into the table
         var table = document.querySelector('table')
         table.appendChild(tr)
+        table.after(hidden_input)
 
         text_input.value = ""
     }
+})
+
+//setting the name of the list from the modal
+document.getElementById('btn_list_name').addEventListener('click',function(){
+    var listName = document.getElementById('list_name').value
+    document.querySelector('.title').textContent = listName
+    document.getElementById('nameToServer').value = listName
 })
