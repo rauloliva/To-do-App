@@ -20,19 +20,51 @@ var DataBase = function(){
         })
     }
 
-    var InsertTasks = function(id, tasks, listName, callback){
+    var InsertTasks = function(id, tasks, status, listName, callback){
         console.log("Inserting tasks...")
-        var length = tasks.length
         const date = new Date()
+        var clientData = []
         let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
-        for (let i = 0; i < length; i++) {
-            var sql = `INSERT INTO lists (to_do,id_user,date_created,name_list) VALUES 
-                ('${tasks[i]}',${id},'${formatted_date}','${listName}')`    
-            sThis.cnn.query(sql,function(err){
+        const Tasks = tasks.reverse()
+        console.log("After reverse: "+Tasks);
+        
+        Tasks.forEach(async (task,i) => {
+
+            var s = typeof status[i] === 'undefined' ? "f" : status[i]
+            //before insert, do an update for those that already exists in DB
+            const wasUpdated = await updateTask(id,task,s)
+            if(wasUpdated){
+                console.log(task+" was updated");
+            }else{
+                console.log(task+" was not updated");
+                var sql = `INSERT INTO lists (to_do,id_user,date_created,name_list,status) VALUES 
+                    ('${task}',${id},'${formatted_date}','${listName}','${s}')`    
+                
+                sThis.cnn.query(sql,err => {if(err) throw err})
+            }
+            clientData.push({
+                to_do: task,
+                status: s
+            }) 
+            if((i+1) === tasks.length){
+                callback(clientData)
+            }
+        })
+    }
+
+    var updateTask = function(id_user, task, status){
+        return new Promise(resolve =>{
+            const sql = `UPDATE lists SET status = '${status}' WHERE id_user = ${id_user} AND to_do = '${task}'`
+            sThis.cnn.query(sql, function(err,result){
                 if(err) throw err
+                console.log("In Update: "+result.affectedRows);
+                if(result.affectedRows > 0){
+                    resolve(true)
+                }else{
+                    resolve(false)
+                }
             })
-        }
-        callback()
+        })
     }
 
     var Select = function(user, callback){
@@ -51,6 +83,19 @@ var DataBase = function(){
     var SelectTasks = function(id_user, callback){
         console.log("Retrieving tasks");
         const sql = `SELECT DISTINCT(name_list) FROM lists WHERE id_user = ${id_user}`
+        sThis.cnn.query(sql,function(err,result){
+            if(err) throw err
+            var objData = null
+            try {
+                objData = result
+            } catch (error) {}
+            callback(objData)
+        })
+    }
+    //retrieves all the tasks from a specific list
+    var SelectList = function(id,name_list,callback){
+        console.log("Retrieving tasks from list: "+name_list);
+        const sql = `SELECT * FROM lists WHERE name_list = '${name_list}' AND id_user = ${id}`
         sThis.cnn.query(sql,function(err,result){
             if(err) throw err
             var objData = null
@@ -90,8 +135,10 @@ var DataBase = function(){
         InsertTasks: InsertTasks,
         Select: Select,
         SelectTasks: SelectTasks,
+        SelectList: SelectList,
         selectProfile: selectProfile,
-        update: update
+        update: update,
+        updateTask: updateTask
     }
 }
 module.exports = DataBase

@@ -68,6 +68,8 @@ document.querySelector('#btn-add').addEventListener('click',function(){
         //create the checkbox
         var checkbox = document.createElement('input')
         checkbox.setAttribute('id',`checkbox_${num_task}`)
+        checkbox.setAttribute('name','status')
+        checkbox.setAttribute('value','f')
         checkbox.setAttribute('type','checkbox')
         checkbox.setAttribute('style','width:30px;height:30px')
         checkbox.addEventListener('click',function(){
@@ -75,6 +77,9 @@ document.querySelector('#btn-add').addEventListener('click',function(){
             const id = this.id.replace('checkbox_','')
             const task = document.querySelector(`#task_${id}`)
             task.innerHTML = isChecked ? `<s>${task.innerHTML}</s>` : `${task.textContent.replace('<s>','').replace('</s>','')}`
+            //this value will be send to the server
+            const value = this.value
+            this.value = value === 'f' ? 't' : 'f'
         })
         cell1.appendChild(checkbox)
 

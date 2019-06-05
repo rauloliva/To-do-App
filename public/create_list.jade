@@ -79,10 +79,15 @@ html(lang="en")
                         for task in tasks
                             tr
                                 td
-                                    input(type="checkbox", name="", style="width:30px;height:30px")
-                                td #{task}
+                                    if task.status === 't'
+                                        input(type="checkbox", name="", checked style="width:30px;height:30px")
+                                    else 
+                                        input(type="checkbox", name="", style="width:30px;height:30px")
+                                td(style="font-size:20px") #{task.to_do}
                                 td 
                                     button(type="button") Delete
+                            input(type="hidden", name="task" value="#{task.to_do}")
+                            input(type="hidden", name="status" value="#{task.status}")
         br
 
         <!-- Modal -->

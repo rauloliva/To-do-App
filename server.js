@@ -113,20 +113,30 @@ app.get('/create_list',function(req,res){
         if(name_list === undefined){
             res.render('error',lack_data)
         }else{
-            res.render('create_list',{name_list: name_list})
+            db.SelectList(req.session.Id,name_list,(clientData)=>{
+                res.render('create_list',{
+                    tasks: clientData,
+                    name_list: name_list
+                })
+            })
         }
     }else{
         res.render('error',error_session)
     }
 })
 
-//getting the tasks
+//getting the tasks in order to save them
 app.post('/create_list',function(req,res){
     const tasks = req.body.task
+    const tasks_status = req.body.status
+    console.log(Object.values(tasks));
+    console.log(Object.values(tasks_status));
+    console.log("Tasks: "+tasks);
+    console.log("Status: "+tasks_status);
     const listName = req.body.listName
-    db.InsertTasks(req.session.Id,tasks,listName,function(){
+    db.InsertTasks(req.session.Id,tasks,tasks_status,listName,function(clientData){
         res.render('create_list',{
-            tasks:tasks,
+            tasks: clientData,
             name_list: listName
         })
     })
