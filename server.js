@@ -40,7 +40,7 @@ app.listen(port,function(){
 })
 
 //setting the public folder as a view
-app.set('views','public')
+app.set('views',['public','Test'])
 //setting the engine
 app.set('view engine','jade')
 //preparing the html body to be parsed as json when a form is sent 
@@ -70,6 +70,16 @@ app.use('/person',api)
 //Log In page
 app.get('/',function(req,res){
     res.render('log_in')
+})
+
+app.get('/test',(req,res) => {
+    res.render('test')
+})
+
+app.post('/test',(req,res) => {
+    const request = req.body.status
+    console.log("The server received: "+request);
+    res.render('test',{back:request})
 })
 
 app.post('/log_in',function(req,res){
@@ -129,8 +139,6 @@ app.get('/create_list',function(req,res){
 app.post('/create_list',function(req,res){
     const tasks = req.body.task
     const tasks_status = req.body.status
-    console.log(Object.values(tasks));
-    console.log(Object.values(tasks_status));
     console.log("Tasks: "+tasks);
     console.log("Status: "+tasks_status);
     const listName = req.body.listName

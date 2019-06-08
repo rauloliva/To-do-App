@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Test
+    body(style="background:purple")
+
+        form(action="test", method="post")
+            button(type="submit")|Click
+            if back
+                p Back from server
+                h2 #{back}
+
+        script 
+            |var input = document.createElement('input')
+            |var dataHidden = document.createElement('input')
+
+            |dataHidden.setAttribute('type','hidden')
+            |dataHidden.setAttribute('name','status')
+            |dataHidden.setAttribute('value','f')
+            |dataHidden.setAttribute('id','status_1')
+
+            |input.setAttribute('type','checkbox')
+            |input.setAttribute('id','task_1')
+            |document.querySelector('form').appendChild(input)
+            |document.querySelector('form').appendChild(dataHidden)
+
+            |input.addEventListener('click',function(){
+            |const id = this.id.split('_')[1]
+            |var dataHidden = document.getElementById('status_'+id)
+            |dataHidden.value = dataHidden.value === 'f' ? 't' : 'f'
+            |})
+
+            

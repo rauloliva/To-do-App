@@ -68,18 +68,25 @@ document.querySelector('#btn-add').addEventListener('click',function(){
         //create the checkbox
         var checkbox = document.createElement('input')
         checkbox.setAttribute('id',`checkbox_${num_task}`)
-        checkbox.setAttribute('name','status')
-        checkbox.setAttribute('value','f')
         checkbox.setAttribute('type','checkbox')
         checkbox.setAttribute('style','width:30px;height:30px')
+        
+        //create an input hidden where the value is gonna send to the server
+        var statusHidden = document.createElement('input')
+        statusHidden.setAttribute('type','hidden')
+        statusHidden.setAttribute('name','status')
+        statusHidden.setAttribute('id',`status_${num_task}`)
+        statusHidden.setAttribute('value','f')
+
         checkbox.addEventListener('click',function(){
+            //when this is checked
             const isChecked = this.checked
             const id = this.id.replace('checkbox_','')
             const task = document.querySelector(`#task_${id}`)
             task.innerHTML = isChecked ? `<s>${task.innerHTML}</s>` : `${task.textContent.replace('<s>','').replace('</s>','')}`
-            //this value will be send to the server
-            const value = this.value
-            this.value = value === 'f' ? 't' : 'f'
+            //status value will be send to the server
+            const status = document.getElementById(`status_${id}`)
+            status.value = status.value === 'f' ? 't' : 't'
         })
         cell1.appendChild(checkbox)
 
@@ -117,7 +124,11 @@ document.querySelector('#btn-add').addEventListener('click',function(){
         //adding the row into the table
         var table = document.querySelector('table')
         table.appendChild(tr)
+        //adding the hidden tasks to the table
         table.after(hidden_input)
+        //adding the hidden status to the table
+        table.after(statusHidden)
+
 
         text_input.value = ""
     }
@@ -129,3 +140,15 @@ document.getElementById('btn_list_name').addEventListener('click',function(){
     document.querySelector('.title').textContent = listName
     document.getElementById('nameToServer').value = listName
 })
+
+function checkboxesFromServer(sThis) {
+    //when this is checked
+    /*const isChecked = this.checked
+    const id = this.id.replace('checkbox_','')
+    const task = document.querySelector(`#task_${id}`)
+    task.innerHTML = isChecked ? `<s>${task.innerHTML}</s>` : `${task.textContent.replace('<s>','').replace('</s>','')}`
+    //status value will be send to the server
+    const status = document.getElementById(`status_${id}`)
+    status.value = status.value === 'f' ? 't' : 't'*/
+    console.log(sThis)
+}

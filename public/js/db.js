@@ -25,26 +25,23 @@ var DataBase = function(){
         const date = new Date()
         var clientData = []
         let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
-        const Tasks = tasks.reverse()
-        console.log("After reverse: "+Tasks);
-        
-        Tasks.forEach(async (task,i) => {
+        tasks.forEach(async (task,i) => {
 
-            var s = typeof status[i] === 'undefined' ? "f" : status[i]
+            //var s = typeof status[i] === 'undefined' ? "f" : status[i]
             //before insert, do an update for those that already exists in DB
-            const wasUpdated = await updateTask(id,task,s)
+            const wasUpdated = await updateTask(id,task,status[i])
             if(wasUpdated){
                 console.log(task+" was updated");
             }else{
                 console.log(task+" was not updated");
                 var sql = `INSERT INTO lists (to_do,id_user,date_created,name_list,status) VALUES 
-                    ('${task}',${id},'${formatted_date}','${listName}','${s}')`    
+                    ('${task}',${id},'${formatted_date}','${listName}','${status[i]}')`    
                 
                 sThis.cnn.query(sql,err => {if(err) throw err})
             }
             clientData.push({
                 to_do: task,
-                status: s
+                status: status[i]
             }) 
             if((i+1) === tasks.length){
                 callback(clientData)
